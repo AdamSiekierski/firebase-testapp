@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { navigate } from '@reach/router';
 import { UserContext } from '../../providers/UserContext';
 
@@ -11,7 +11,7 @@ function Protected({ view }) {
     }
   });
 
-  return <div>{user && view}</div>;
+  return user ? view : null;
 }
 
 export default Protected;
