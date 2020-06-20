@@ -1,10 +1,27 @@
-import React, { useContext } from 'react';
-import { UserContext } from '../providers/UserContext';
+import React from 'react';
+import styled from 'styled-components';
+
+const Wrapper = styled.div`
+  min-height: 100vh;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Title = styled.h1`
+  font-size: 3.5em;
+`;
 
 function Main() {
-  const { user } = useContext(UserContext);
-
-  return <div>hello, {user.displayName}</div>;
+  return (
+    <Wrapper>
+      <Title>FireThoughts</Title>
+    </Wrapper>
+  );
 }
 
 export default Main;

@@ -20,3 +20,6 @@ export const auth = firebase.auth();
 export function loginWithGoogle() {
   auth.signInWithPopup(provider);
 }
+export function logout() {
+  auth.signOut();
+}
