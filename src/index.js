@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import './assets/index.css';
+import './assets/styles/globalStyles.css';
 import App from './components/App/App';
 
 import * as serviceWorker from './serviceWorker';
@@ -10,7 +10,7 @@ ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-  document.getElementById('root'),
+  document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change
