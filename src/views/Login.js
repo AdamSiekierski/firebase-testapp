@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import { navigate } from '@reach/router';
-import { loginWithGoogle } from '../firebase';
+import { auth, googleProvider } from '../firebase';
 import { UserContext } from '../providers/UserContext';
 
 const Button = styled.button`
@@ -44,7 +44,7 @@ function Login() {
 
   return (
     <Wrapper>
-      <Button onClick={() => loginWithGoogle()} type="button">
+      <Button onClick={() => auth.signInWithPopup(googleProvider)} type="button">
         zaloguj sie z gugle.
       </Button>
     </Wrapper>

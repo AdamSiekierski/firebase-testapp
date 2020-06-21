@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { UserContext } from '../../providers/UserContext';
-import { logout } from '../../firebase';
+import { auth } from '../../firebase';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -35,7 +35,7 @@ function Footer() {
       <div>{user ? `zalogowany jako ${user.displayName}` : 'nie zalogowany'}</div>
       {user && (
         <div>
-          <Button type="button" onClick={() => logout()}>
+          <Button type="button" onClick={() => auth.signOut()}>
             wyloguj sie
           </Button>
         </div>

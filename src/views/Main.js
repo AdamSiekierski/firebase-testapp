@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { withThoughts } from '../providers/ThoughtsContext';
 
 const Wrapper = styled.div`
   min-height: 100vh;
@@ -24,4 +25,4 @@ function Main() {
   );
 }
 
-export default Main;
+export default withThoughts(Main);
