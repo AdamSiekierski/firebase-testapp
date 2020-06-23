@@ -8,17 +8,13 @@ export function ThoughtsProvider({ children }) {
 
   useEffect(() => {
     const unsubscribe = db.collection('thoughts').onSnapshot(({ docs }) => {
-      const newThoughts = [];
-      docs.map(doc => {
-        newThoughts.push(doc.data().content);
-      });
-      setThoughts(newThoughts);
+      setThoughts(docs);
     });
 
     return () => unsubscribe();
   }, []);
 
-  const addThought = thought => setThoughts(prevThoughts => [...prevThoughts, thought]);
+  const addThought = content => db.collection('thoughts').add({ content });
 
   return (
     <ThoughtsContext.Provider value={{ thoughts, addThought }}>{children}</ThoughtsContext.Provider>
