@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import gsap from 'gsap';
 import { withThoughts, ThoughtsContext } from '../providers/ThoughtsContext';
+import Modal from '../components/Modal/Modal';
 
 const Thoughts = styled.div`
   min-height: 100vh;
@@ -25,9 +26,50 @@ const Title = styled.h1`
   margin: 0;
 `;
 
+const Add = styled.button`
+  background: none;
+  border: none;
+  outline: none;
+  display: block;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  z-index: 3;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    left: 0;
+    transition: transform 0.3s;
+  }
+
+  &::after {
+    transform: rotate(90deg);
+  }
+
+  ${({ open }) =>
+    open &&
+    `
+    &::before {
+      transform: rotate(45deg);
+    }
+
+    &::after {
+      transform: rotate(-45deg);
+    }`}
+`;
+
 function Main() {
   const { thoughts } = useContext(ThoughtsContext);
   const [transition, setTransition] = useState(false);
+  const [open, setOpen] = useState(false);
   const thoughtsRef = useRef();
   const titleRef = useRef();
 
@@ -44,10 +86,12 @@ function Main() {
 
       setTransition(true);
     }
-  });
+  }, [thoughts.length, transition]);
 
   return (
     <>
+      <Modal open={open} />
+      <Add open={open} onClick={() => setOpen(prev => !prev)} />
       <Title ref={titleRef}>FireThoughts</Title>
       <Thoughts ref={thoughtsRef}>
         {thoughts.map(thought => {
