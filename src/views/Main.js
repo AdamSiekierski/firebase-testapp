@@ -64,6 +64,8 @@ const Add = styled.button`
     &::after {
       transform: rotate(-45deg);
     }`}
+
+  visibility: hidden;
 `;
 
 function Main() {
@@ -72,17 +74,20 @@ function Main() {
   const [open, setOpen] = useState(false);
   const thoughtsRef = useRef();
   const titleRef = useRef();
+  const buttonRef = useRef();
 
   useEffect(() => {
     if (thoughts.length > 0 && !transition) {
       const wrapper = thoughtsRef.current;
       const title = titleRef.current;
+      const button = buttonRef.current;
 
       const tl = gsap.timeline({ defaults: { duration: 1.5, ease: 'Power1.easeInOut' } });
 
-      gsap.set(wrapper, { autoAlpha: 0 });
+      gsap.set([wrapper, button], { autoAlpha: 0 });
       tl.to(title, { top: 50 });
       tl.to(wrapper, { autoAlpha: 1, duration: 0.5, delay: 0.5 });
+      tl.to(button, { autoAlpha: 1, duration: 0.5, delay: 0.5 });
 
       setTransition(true);
     }
@@ -90,8 +95,8 @@ function Main() {
 
   return (
     <>
-      <Modal open={open} />
-      <Add open={open} onClick={() => setOpen(prev => !prev)} />
+      <Modal open={open} close={() => setOpen(false)} />
+      <Add open={open} onClick={() => setOpen(prev => !prev)} ref={buttonRef} />
       <Title ref={titleRef}>FireThoughts</Title>
       <Thoughts ref={thoughtsRef}>
         {thoughts.map(thought => {

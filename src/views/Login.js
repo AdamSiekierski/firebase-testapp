@@ -45,7 +45,7 @@ function Login() {
   return (
     <Wrapper>
       <Button onClick={() => auth.signInWithPopup(googleProvider)} type="button">
-        zaloguj sie z gugle.
+        login with gugle.
       </Button>
     </Wrapper>
   );

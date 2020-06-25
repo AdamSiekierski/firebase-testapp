@@ -32,11 +32,11 @@ function Footer() {
 
   return (
     <Wrapper>
-      <div>{user ? `zalogowany jako ${user.displayName}` : 'nie zalogowany'}</div>
+      <div>{user ? `logged in as ${user.displayName}` : 'not logged in'}</div>
       {user && (
         <div>
           <Button type="button" onClick={() => auth.signOut()}>
-            wyloguj sie
+            logout
           </Button>
         </div>
       )}
