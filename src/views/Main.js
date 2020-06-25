@@ -15,6 +15,7 @@ const Thoughts = styled.div`
   align-items: center;
   padding: 100px 0 0 0;
   visibility: hidden;
+  text-align: center;
 `;
 
 const Title = styled.h1`

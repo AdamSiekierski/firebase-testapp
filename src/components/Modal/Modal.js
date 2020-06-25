@@ -81,6 +81,7 @@ function Modal({ open, close }) {
       .add({ content: thought })
       .then(() => {
         close();
+        setThought('');
       });
   }
 
