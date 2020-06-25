@@ -25,3 +25,6 @@ yarn-error.log*
 # IDE's
 .vscode/
 .idea/
+
+.firebase/
+build/
